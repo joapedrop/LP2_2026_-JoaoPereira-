@@ -11,9 +11,128 @@ public class App {
         return num;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static int LerNumInt() {
+        int num = 0;
 
-        TrocarLinhasEColunasDaMatriz();
+        do {
+            num = LER.nextInt();
+        } while (num <= 0 || num > 10);
+
+        return num;
+    }
+
+    public static int LerNumEscolha() {
+        int num = 0;
+
+        do {
+            num = LER.nextInt();
+        } while (num <= -1 || num > 15);
+
+        return num;
+    }
+
+    public static void main(String[] args) throws Exception {
+        int escolha = 0;
+
+        do {
+
+            System.out.println("escolha entre 0 a 15");
+            System.out.println("1. Calcular a soma dos elementos de uma matriz A(5,5).");
+            System.out.println("2. Calcular a soma dos elementos da diagonal principal de uma matriz A(6,6).");
+            System.out.println("3. Calcular a soma dos elementos da diagonal secundária de uma matriz A(6,6).");
+            System.out.println("4. Calcular a soma dos elementos da linha 5 e da coluna 3 de uma matriz A(7,6).");
+            System.out.println("5. Encontrar o menor elemento da diagonal secundária de uma matriz A(6,6).");
+            System.out.println(
+                    "6. Encontrar o maior elemento da diagonal principal de uma matriz A(8,8) e dividir todos os elementos de A por ele, armazenando em uma matriz B(8,8).");
+            System.out.println(
+                    "7. Calcular o produto matricial de duas matrizes A(4,6) e B(6,4) e armazenar em uma matriz C(4,4).");
+            System.out.println(
+                    "8. Multiplicar cada elemento de uma matriz M(6,6) por um valor A e armazenar em um vetor V(36).");
+            System.out.println("9. Realizar trocas em uma matriz A(10,10) e apresentar a matriz atualizada.");
+            System.out.println("10. Somar os elementos das linhas pares de uma matriz B(9,9) de inteiros.");
+            System.out.println(
+                    "11. Multiplicar cada linha de uma matriz A(6,6) pelo elemento da diagonal principal daquela linha e retornar a matriz alterada.");
+            System.out.println(
+                    "12. Calcular a média aritmética dos elementos abaixo da diagonal principal de uma matriz A(12,12).");
+            System.out.println("13. Calcular a soma dos elementos acima da diagonal principal de uma matriz A(10,10).");
+            System.out.println("14. Determinar a matriz A = [aij]n x m tal que aij = 2i + j^2.");
+            System.out.println(
+                    "15. Determinar a matriz A = [aij]n x m tal que se i + j for par é -i^2 e se for impar é 2 * i * j.");
+            System.out.println("0. Sair");
+            System.out.print("escolha: ");
+
+            escolha = LerNumEscolha();
+
+            if (escolha == 0) {
+                break;
+            }
+
+            switch (escolha) {
+                case 1:
+                    CalcularASoma();
+                    break;
+
+                case 2:
+                    CalcularAsomadadiagonalprincipal();
+                    break;
+
+                case 3:
+                    CalcularAsomaDaDiagonalSecundaria();
+                    break;
+
+                case 4:
+                    CalcularAsomaDaLinhaeColuna();
+                    break;
+
+                case 5:
+                    EncontrarOMenorNumeroEmUmaMatriz();
+                    break;
+
+                case 6:
+                    EncontrarMaiorValorEDividiir();
+                    break;
+
+                case 7:
+                    CalcularProdutoMatricial();
+                    break;
+
+                case 8:
+                    MultiplicarUmaMatriz();
+                    break;
+
+                case 9:
+                    TrocarLinhasEColunasDaMatriz();
+                    break;
+
+                case 10:
+                    SomarNumerosPares();
+                    break;
+
+                case 11:
+                    MultiplicarPelaDiagonalPrincipal();
+                    break;
+
+                case 12:
+                    CalcularAMediaDeUmaMatriz();
+                    break;
+
+                case 13:
+                    SomaDaDiagonalPrincipalAcima();
+                    break;
+
+                case 14:
+                    CriarMatrizECalcular();
+                    break;
+
+                case 15:
+                    ClassificarImparEPar();
+                    break;
+
+                default:
+                    break;
+            }
+
+        } while (true);
 
     }
 
@@ -24,6 +143,7 @@ public class App {
     public static void CalcularASoma() {
         double[][] matrizde5 = new double[5][5];
         double soma = 0;
+        double cont = 0;
 
         for (int i = 0; i < matrizde5.length; i++) {
             for (int j = 0; j < matrizde5[i].length; j++) {
@@ -199,7 +319,7 @@ public class App {
     }
 
     /*
-     * Escreva um programa que receba duas matrizes A(4,6) e B(6,4) e retorne uma
+     * 7. Escreva um programa que receba duas matrizes A(4,6) e B(6,4) e retorne uma
      * matriz C, que
      * seja o produto matricial de M por N
      */
@@ -249,7 +369,7 @@ public class App {
     }
 
     /*
-     * Escreva um programa que receba uma matriz M(6,6) e um valor A . O
+     * 8. Escreva um programa que receba uma matriz M(6,6) e um valor A . O
      * procedimento deve
      * multiplicar cada elemento de M por A e armazenar em um vetor V(36).
      */
@@ -281,7 +401,7 @@ public class App {
     }
 
     /*
-     * Escreva um programa que receba uma matriz A(10,10), e realize as seguintes
+     * 9. Escreva um programa que receba uma matriz A(10,10), e realize as seguintes
      * trocas:
      * a) a linha 2 com a linha 8;
      * b) a coluna 4 com a coluna 10;
@@ -289,7 +409,6 @@ public class App {
      * d) a linha 5 com a coluna 10;
      * Ao final, apresente a Matriz A atualizada
      */
-
     public static void TrocarLinhasEColunasDaMatriz() {
         double[][] matrizde10 = new double[10][10];
         double cont = 0;
@@ -342,6 +461,209 @@ public class App {
             System.out.printf("[%d] ", i);
             for (int j = 0; j < matrizde10[i].length; j++) {
                 System.out.printf("%.2f ", matrizde10[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+     * 10. Escreva um programa que receba uma matriz B(9,9) de inteiros e retorne a
+     * soma
+     * dos
+     * elementos das linhas pares de B.
+     */
+    public static void SomarNumerosPares() {
+        int[][] matrizde9 = new int[9][9];
+        int soma = 0;
+        int cont = 0;
+
+        for (int i = 0; i < matrizde9.length; i++) {
+            for (int j = 0; j < matrizde9[i].length; j++) {
+                matrizde9[i][j] = cont++;
+            }
+        }
+
+        for (int i = 0; i < matrizde9.length; i++) {
+            for (int j = 0; j < matrizde9.length; j++) {
+                if (matrizde9[i][j] % 2 == 0) {
+                    soma += matrizde9[i][j];
+                }
+            }
+        }
+
+        System.out.println("soma dos pares: " + soma);
+    }
+
+    /*
+     * 11. Escreva um programa que receba uma matriz A(6,6) e multiplique cada linha
+     * pelo elemento
+     * da diagonal principal daquela linha. O procedimento deve retornar a matriz
+     * alterada.
+     */
+    public static void MultiplicarPelaDiagonalPrincipal() {
+        int[][] matrizde6 = new int[6][6];
+        int multiplicador = 0;
+        int cont = 1;
+
+        for (int i = 0; i < matrizde6.length; i++) {
+            for (int j = 0; j < matrizde6[i].length; j++) {
+                matrizde6[i][j] = cont++;
+            }
+        }
+
+        for (int i = 0; i < matrizde6.length; i++) {
+            multiplicador = matrizde6[i][i];
+            for (int j = 0; j < matrizde6[i].length; j++) {
+                matrizde6[i][j] = matrizde6[i][j] * multiplicador;
+            }
+        }
+
+        for (int i = 0; i < matrizde6.length; i++) {
+            System.out.printf("[%d] ", i);
+        }
+        System.out.println();
+
+        for (int i = 0; i < matrizde6.length; i++) {
+            System.out.printf("[%d] ", i);
+            for (int j = 0; j < matrizde6[i].length; j++) {
+                System.out.printf("%4d ", matrizde6[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+     * 12. Escreva um programa que receba uma matriz A(12,12) e retorne a média
+     * aritmética dos
+     * elementos abaixo da diagonal principal.
+     */
+    public static void CalcularAMediaDeUmaMatriz() {
+        double[][] matrizde12 = new double[12][12];
+        double cont = 1;
+        double soma = 0;
+        double divisor = 0;
+        double media = 0;
+
+        for (int i = 0; i < matrizde12.length; i++) {
+            for (int j = 0; j < matrizde12[i].length; j++) {
+                matrizde12[i][j] = cont++;
+            }
+        }
+
+        for (int i = 0; i < matrizde12.length; i++) {
+            for (int j = 0; j < matrizde12.length; j++) {
+                if (j < i) {
+                    divisor++;
+                    soma += matrizde12[i][j];
+                }
+            }
+        }
+
+        media = soma / divisor;
+
+        System.out.println("media aritmetica é: " + media);
+
+    }
+
+    /*
+     * 13. Escreva um programa que receba uma matriz A(10,10) e retorne a soma dos
+     * elementos acima
+     * da diagonal principal.
+     */
+    public static void SomaDaDiagonalPrincipalAcima() {
+        double[][] matrizde10 = new double[10][10];
+        double cont = 1;
+        double soma = 0;
+
+        for (int i = 0; i < matrizde10.length; i++) {
+            for (int j = 0; j < matrizde10[i].length; j++) {
+                matrizde10[i][j] = cont++;
+            }
+        }
+
+        for (int i = 0; i < matrizde10.length; i++) {
+            for (int j = 0; j < matrizde10[i].length; j++) {
+                if (j > i) {
+                    soma += matrizde10[i][j];
+                }
+            }
+        }
+
+        System.out.println("soma da parte de cima da diagonal principal: " + soma);
+    }
+
+    /*
+     * 14. Elaborar um programa em java usando métodos para determinar a matriz
+     * A = [aij]n x m tal que aij = 2i + j2
+     */
+    public static void CriarMatrizECalcular() {
+        int l = 0;
+        int n = 0;
+
+        l = LerNumInt();
+
+        n = LerNumInt();
+
+        int[][] matriz = new int[l][n];
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                int idaconta = i + 1;
+                int jdaconta = j + 1;
+                matriz[i][j] = (int) ((2 * idaconta) + Math.pow(jdaconta, 2));
+            }
+        }
+
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.printf("[%d] ", i);
+        }
+        System.out.println();
+
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.printf("[%d] ", i);
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%4d ", matriz[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+     * 15. Elaborar um programa em java usando métodos para determinar a matriz
+     * A = [aij]n x m tal que se i + j for par é -i^2 e se for impar é 2 * i * j
+     */
+    public static void ClassificarImparEPar() {
+        int l = 0;
+        int n = 0;
+
+        l = LerNumInt();
+
+        n = LerNumInt();
+
+        int[][] matriz = new int[l][n];
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                int idaconta = i + 1;
+                int jdaconta = j + 1;
+                if ((idaconta + jdaconta) % 2 == 0) {
+                    matriz[i][j] = -(idaconta * idaconta);
+                } else {
+                    matriz[i][j] = 2 * idaconta * jdaconta;
+                }
+
+            }
+        }
+
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.printf("[%d] ", i);
+        }
+        System.out.println();
+
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.printf("[%d] ", i);
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%4d ", matriz[i][j]);
             }
             System.out.println();
         }
